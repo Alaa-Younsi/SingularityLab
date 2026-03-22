@@ -148,6 +148,14 @@ npm run build
 - Add automated quality gates (ESLint config + CI checks)
 - Add Lighthouse CI for performance/SEO regression tracking
 
+## License
+
+This project is licensed under the MIT License.
+
+You are free to use, modify, and distribute this project for personal or commercial purposes, provided the original copyright notice and license terms are included.
+
+If you want, I can also add a dedicated LICENSE file in the repository root with the full MIT text.
+
 ---
 
 Built as an ongoing, personal R&D journal for deliberate learning and experimentation.
