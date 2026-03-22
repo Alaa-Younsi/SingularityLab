@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://singularitylab.example.com/sitemap.xml

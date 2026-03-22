@@ -1,0 +1,287 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+/* Fonts loaded via <link> in index.html (Orbitron, Space Mono, Sora) */
+
+/* ─── CSS Custom Properties ──────────────────────────────────────────────── */
+:root {
+  --void:           #050508;
+  --deep:           #0a0b14;
+  --nebula:         #0d1117;
+  --surface:        #111827;
+  --surface-alt:    #1a2035;
+  --border:         #1e2d45;
+  --border-glow:    #1e3a5f;
+  --pulsar:         #00b4d8;
+  --quasar:         #7b2fff;
+  --nova:           #f72585;
+  --starlight:      #e8eaf6;
+  --comet:          #94a3b8;
+  --asteroid:       #4a5568;
+  --constellation:  #1a2744;
+}
+
+/* ─── Base Reset & Body ───────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--deep);
+  color: var(--comet);
+  font-family: 'Sora', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  overflow-x: hidden;
+  min-height: 100vh;
+  position: relative;
+}
+
+/* ─── Nebula Background Effect ────────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 85% 10%, rgba(123, 47, 255, 0.055) 0%, transparent 70%),
+    radial-gradient(ellipse 50% 40% at 10% 90%, rgba(0, 180, 216, 0.045) 0%, transparent 65%);
+  pointer-events: none;
+  z-index: 0;
+  animation: nebulaDrift 30s ease-in-out infinite;
+}
+
+#root {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─── Custom Scrollbar ────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 180, 216, 0.6);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(0, 180, 216, 0.9);
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 180, 216, 0.6) var(--void);
+}
+
+/* ─── Global Text Selection ───────────────────────────────────────────────── */
+::selection {
+  background-color: rgba(123, 47, 255, 0.3);
+  color: var(--starlight);
+}
+
+::-moz-selection {
+  background-color: rgba(123, 47, 255, 0.3);
+  color: var(--starlight);
+}
+
+/* ─── Keyframe Animations ─────────────────────────────────────────────────── */
+@keyframes twinkle {
+  0%, 100% { opacity: 0.3; }
+  50%       { opacity: 1;   }
+}
+
+@keyframes orbit {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes orbitReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes pulseGlow {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(0, 180, 216, 0.4); }
+  50%       { box-shadow: 0 0 20px 6px rgba(0, 180, 216, 0.7); }
+}
+
+@keyframes pulseGlowQuasar {
+  0%, 100% { box-shadow: 0 0 8px 2px rgba(123, 47, 255, 0.4); }
+  50%       { box-shadow: 0 0 20px 6px rgba(123, 47, 255, 0.7); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes nebulaDrift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+@keyframes scanline {
+  0%   { transform: translateY(-100%); }
+  100% { transform: translateY(100%); }
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes spinReverse {
+  from { transform: rotate(360deg); }
+  to   { transform: rotate(0deg); }
+}
+
+/* ─── Reusable Star Dot ───────────────────────────────────────────────────── */
+.star-dot {
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background-color: var(--starlight);
+  animation: twinkle 3s ease-in-out infinite;
+}
+
+/* ─── Blinking Cursor ─────────────────────────────────────────────────────── */
+.cursor-blink::after {
+  content: '▌';
+  animation: blink 1s step-start infinite;
+  color: var(--pulsar);
+}
+
+/* ─── Glow Utilities ──────────────────────────────────────────────────────── */
+.glow-pulsar {
+  box-shadow: 0 0 16px 4px rgba(0, 180, 216, 0.5);
+}
+
+.glow-quasar {
+  box-shadow: 0 0 16px 4px rgba(123, 47, 255, 0.5);
+}
+
+.glow-nova {
+  box-shadow: 0 0 16px 4px rgba(247, 37, 133, 0.5);
+}
+
+.text-glow-pulsar {
+  text-shadow:
+    0 0 10px rgba(0, 180, 216, 0.8),
+    0 0 30px rgba(0, 180, 216, 0.4),
+    0 0 60px rgba(0, 180, 216, 0.2);
+}
+
+.text-glow-quasar {
+  text-shadow:
+    0 0 10px rgba(123, 47, 255, 0.8),
+    0 0 30px rgba(123, 47, 255, 0.4),
+    0 0 60px rgba(123, 47, 255, 0.2);
+}
+
+/* ─── Scanline Effect ─────────────────────────────────────────────────────── */
+.scanlines {
+  position: relative;
+  overflow: hidden;
+}
+
+.scanlines::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 4px
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ─── Cosmic Border ───────────────────────────────────────────────────────── */
+.cosmic-border {
+  border: 1px solid var(--border);
+  transition: border-color 0.2s ease;
+}
+
+.cosmic-border:hover {
+  border-color: var(--border-glow);
+}
+
+/* ─── Typography Helpers ──────────────────────────────────────────────────── */
+.font-orbitron { font-family: 'Orbitron', sans-serif; }
+.font-space-mono { font-family: 'Space Mono', monospace; }
+.font-sora { font-family: 'Sora', sans-serif; }
+
+/* ─── Prose Overrides ─────────────────────────────────────────────────────── */
+.entry-prose p {
+  font-family: 'Sora', sans-serif;
+  font-weight: 300;
+  color: var(--comet);
+  line-height: 1.9;
+  max-width: 700px;
+  margin-bottom: 1.25rem;
+}
+
+.entry-prose h2 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 600;
+  color: var(--starlight);
+  font-size: 1.4rem;
+  margin-top: 2.5rem;
+  margin-bottom: 1rem;
+  padding-left: 1rem;
+  border-left: 2px solid var(--pulsar);
+}
+
+.entry-prose h3 {
+  font-family: 'Orbitron', sans-serif;
+  font-weight: 400;
+  color: var(--pulsar);
+  font-size: 1.1rem;
+  margin-top: 1.75rem;
+  margin-bottom: 0.75rem;
+}

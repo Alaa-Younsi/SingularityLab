@@ -1,0 +1,18 @@
+{
+  "name": "SingularityLab",
+  "short_name": "SingularityLab",
+  "description": "A curated knowledge base for computer science, coding, mathematics, physics, and chess.",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#050508",
+  "theme_color": "#050508",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}
